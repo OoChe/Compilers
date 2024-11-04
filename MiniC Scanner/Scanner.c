@@ -1,5 +1,3 @@
-
-
 int superLetter(char ch);
 int superLetterOrDigit(char ch);
 int getNumber(char firstCharacter);
@@ -8,7 +6,7 @@ void lexicalError(int n);
 
 #define NO_KEYWORD 7
 #define ID_LENGTH 12
-
+// add do-while, for, switch symbol #
 enum tsymbol { tnull=-1,
     tnot,       tnotequ,    tremainder, tremAssign, tident,     tnumber,
 	/* 0          1            2         3            4          5     */
@@ -23,10 +21,13 @@ enum tsymbol { tnull=-1,
 	//   ...........    word symbols ................................. //
 	/* 30         31          32        33           34         35     */
     tconst,     telse,      tif,        tint,       treturn,    tvoid,
-	/* 36         37          38        39                             */
-    twhile,     tlbrace,    tor,        trbrace
-};
+	/* 36         37          38        39          40          41     */
+    twhile,     tlbrace,    tor,        trbrace,    tfor,       tdo,
+    /* 42       43                                                     */
+    tswitch,    tcase
 
+};
+// add token name
 char *tokenName[] = {
     "!",        "!=",      "%",       "%=",     "%ident",   "%number",
 	/* 0          1           2         3          4          5        */
@@ -41,16 +42,19 @@ char *tokenName[] = {
 	//   ...........    word symbols ................................. //
 	/* 30         31         32        33         34         35        */
     "const",    "else",     "if",      "int",     "return",  "void",
-	/* 36         37         38        39                              */
-    "while",    "{",        "||",       "}"
+	/* 36         37         38        39         40         41        */
+    "while",    "{",        "||",       "}"       "for",     "do",
+    /* 42       43                                                     */
+    "switch"    "case"
 };
 
+// add sugar statement (for, do-while, switch)
 char *keyword[NO_KEYWORD] = { 
-    "const",  "else",    "if",    "int",    "return",  "void",    "while"
+    "const",  "else",    "if",    "int",    "return",  "void",    "while",  "for", "do", "switch"
 };
-
+// add sugar statement #
 enum tsymbol tnum[NO_KEYWORD] = {
-    tconst,    telse,     tif,     tint,     treturn,   tvoid,     twhile
+    tconst,    telse,     tif,     tint,     treturn,   tvoid,     twhile,   tfor,  tdo,  tswitch
 };
 
 struct tokenType {
@@ -61,8 +65,7 @@ struct tokenType {
 	} value;
 };
 
-struct tokenType scanner()
-{
+struct tokenType scanner() {
  struct tokenType token;
  int i, index;
  char ch, id[ID_LENGTH];
@@ -204,8 +207,7 @@ do {
    return token;
 } // end of scanner
 
-void lexicalError(int n)
-{
+void lexicalError(int n) {
 	printf(" *** Lexical Error : ");
 	switch (n) {
 		case 1: printf("an identifier length must be less than 12.\n");
@@ -219,20 +221,17 @@ void lexicalError(int n)
 	}
 }
 
-int superLetter(char ch)
-{
+int superLetter(char ch) {
 	if (isalpha(ch) || ch == '_') return 1;
 		else return 0;
 }
 
-int superLetterOrDigit(char ch)
-{
+int superLetterOrDigit(char ch) {
 	if (isalnum(ch) || ch == '_') return 1;
 		else return 0;
 }
 
-int getNumber(char firstCharacter)
-{
+int getNumber(char firstCharacter) {
 	int num = 0;
 	int value;
 	char ch;
@@ -260,8 +259,7 @@ int getNumber(char firstCharacter)
 	return num;
 }
 
-int hexValue(char ch)
-{
+int hexValue(char ch) {
 	switch (ch) {
 		case '0': case '1': case '2': case '3': case '4':
 		case '5': case '6': case '7': case '8': case '9':

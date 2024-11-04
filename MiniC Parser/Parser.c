@@ -15,8 +15,7 @@ int sp;                               // stack pointer
 int stateStack[PS_SIZE];              // state stack
 int symbolStack[PS_SIZE];             // symbol stack
 
-void parser()
-{
+void parser() {
 	extern int parsingTable[NO_STATES][NO_SYMBOLS + 1];
 	extern int leftSymbol[NO_RULES + 1], rightLength[NO_RULES + 1];
 	int entry, ruleNumber, lhs;
@@ -24,6 +23,7 @@ void parser()
 	struct tokenType token;
 	
 	sp = 0; stateStack[sp] = 0;  // initial state
+	// 잠시만 여기 어떻게 스캐너가 있어요?
 	token = scanner();
 	while (1) {
 		currentState = stateStack[sp];
@@ -69,13 +69,11 @@ void parser()
 	} /* while (1) */
 } /* parser */
 
-void semantic(int n)
-{
+void semantic(int n) {
 	printf("reduced rule number = %d\n", n);
 }
 
-void dumpStack()
-{
+void dumpStack() {
 	int i, start;
 
 	if (sp > 10) start = sp - 10;
@@ -91,8 +89,7 @@ void dumpStack()
 	printf("\n");
 }
 
-void printToken(struct tokenType token)
-{
+void printToken(struct tokenType token) {
 	if (token.number == tident)
 		printf("%s", token.value.id);
 	else if (token.number == tnumber)
@@ -102,8 +99,7 @@ void printToken(struct tokenType token)
 
 }
 
-void errorRecovery()
-{
+void errorRecovery() {
 	struct tokenType tok;
 	int parenthesisCount, braceCount;
 	int i;
@@ -143,4 +139,19 @@ void errorRecovery()
 		if (stateStack[i] == 0) break;	// first external declaration
 	}
 	sp = i;
+}
+
+int main(void) {
+	// 소스 파일을 열고 scanner와 parser를 통합하여 right parse 출력
+	sourceFile = fopen("input.txt", "r");
+	if (sourceFile == NULL) {
+		printf("Error: 파일을 열 수 없습니다.\n");
+		return 1;
+	}
+
+	printf("Starting right parse:\n");
+	parser();  // 파싱 시작
+	fclose(sourceFile);
+
+	return 0;
 }
