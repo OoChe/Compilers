@@ -1,9 +1,12 @@
-#include "MiniC.tbl"                 /* Mini C table for appendix A */
+#include "../MiniC Grammar/MiniC.tbl"                 /* Mini C table for appendix A */
+#include "../tlist.h"
+
 //#define  NO_RULES    97            /* number of rules */
 //#define  GOAL_RULE  (NO_RULES+1)   /* accept rule */
 //#define  NO_SYMBOLS  85            /* number of grammar symbols */
 //#define  NO_STATES  153            /* number of states */
 #define  PS_SIZE    100              /* size of parsing stack */
+#define ID_LENGTH 12
 
 void semantic(int);
 void printToken(struct tokenType token); // -> MiniC Scanner
@@ -23,7 +26,6 @@ void parser() {
 	struct tokenType token;
 	
 	sp = 0; stateStack[sp] = 0;  // initial state
-	// 잠시만 여기 어떻게 스캐너가 있어요?
 	token = scanner();
 	while (1) {
 		currentState = stateStack[sp];
@@ -96,7 +98,6 @@ void printToken(struct tokenType token) {
 		printf("%d", token.value.num);
 	else
 		printf("%s", tokenName[token.number]);
-
 }
 
 void errorRecovery() {
@@ -142,13 +143,11 @@ void errorRecovery() {
 }
 
 int main(void) {
-	// 소스 파일을 열고 scanner와 parser를 통합하여 right parse 출력
-	sourceFile = fopen("input.txt", "r");
+	sourceFile = fopen("./Examples/bubble.mc", "r");
 	if (sourceFile == NULL) {
 		printf("Error: 파일을 열 수 없습니다.\n");
-		return 1;
+		return 0;
 	}
-
 	printf("Starting right parse:\n");
 	parser();  // 파싱 시작
 	fclose(sourceFile);

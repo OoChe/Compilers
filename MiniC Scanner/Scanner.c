@@ -1,68 +1,39 @@
+#include "../tlist.h"
+
 int superLetter(char ch);
 int superLetterOrDigit(char ch);
 int getNumber(char firstCharacter);
 int hexValue(char ch);
 void lexicalError(int n);
 
-#define NO_KEYWORD 7
-#define ID_LENGTH 12
-// add do-while, for, switch symbol #
-enum tsymbol { tnull=-1,
-    tnot,       tnotequ,    tremainder, tremAssign, tident,     tnumber,
-	/* 0          1            2         3            4          5     */
-	tand,       tlparen,    trparen,    tmul,       tmulAssign, tplus,
-	/* 6          7            8         9           10         11     */
-    tinc,       taddAssign, tcomma,     tminus,     tdec,	    tsubAssign,
-	/* 12         13          14        15           16         17     */
-	tdiv,       tdivAssign, tsemicolon, tless,      tlesse,     tassign,
-	/* 18         19          20        21           22         23     */
-    tequal,     tgreat,     tgreate,    tlbracket,  trbracket,  teof,
-	/* 24         25          26        27           28         29     */
-	//   ...........    word symbols ................................. //
-	/* 30         31          32        33           34         35     */
-    tconst,     telse,      tif,        tint,       treturn,    tvoid,
-	/* 36         37          38        39          40          41     */
-    twhile,     tlbrace,    tor,        trbrace,    tfor,       tdo,
-    /* 42       43                                                     */
-    tswitch,    tcase
-
-};
-// add token name
-char *tokenName[] = {
+// add do-while, for, switch token name
+char* tokenName[] = {
     "!",        "!=",      "%",       "%=",     "%ident",   "%number",
-	/* 0          1           2         3          4          5        */
+    /* 0          1           2         3          4          5        */
     "&&",       "(",       ")",       "*",      "*=",       "+",
-	/* 6          7           8         9         10         11        */
+    /* 6          7           8         9         10         11        */
     "++",       "+=",      ",",       "-",      "--",	    "-=",
-	/* 12         13         14        15         16         17        */
+    /* 12         13         14        15         16         17        */
     "/",        "/=",      ";",       "<",      "<=",       "=",
-	/* 18         19         20        21         22         23        */
+    /* 18         19         20        21         22         23        */
     "==",       ">",       ">=",      "[",      "]",        "eof",
-	/* 24         25         26        27         28         29        */
-	//   ...........    word symbols ................................. //
-	/* 30         31         32        33         34         35        */
+    /* 24         25         26        27         28         29        */
+    //   ...........    word symbols ................................. //
+    /* 30         31         32        33         34         35        */
     "const",    "else",     "if",      "int",     "return",  "void",
-	/* 36         37         38        39         40         41        */
+    /* 36         37         38        39         40         41        */
     "while",    "{",        "||",       "}"       "for",     "do",
-    /* 42       43                                                     */
-    "switch"    "case"
+    /* 42                                                              */
+    "switch"
 };
 
 // add sugar statement (for, do-while, switch)
-char *keyword[NO_KEYWORD] = { 
-    "const",  "else",    "if",    "int",    "return",  "void",    "while",  "for", "do", "switch"
+char* keyword[NO_KEYWORD] = {
+    "const",  "else",    "if",    "int",    "return",  "void",    "while",  "for",  "do",  "switch"
 };
 // add sugar statement #
 enum tsymbol tnum[NO_KEYWORD] = {
-    tconst,    telse,     tif,     tint,     treturn,   tvoid,     twhile,   tfor,  tdo,  tswitch
-};
-
-struct tokenType {
-	int number;
-	union {
-		char id[ID_LENGTH];
-		int num;
-	} value;
+    tconst,    telse,     tif,     tint,     treturn,   tvoid,     twhile,   tfor,   tdo,   tswitch
 };
 
 struct tokenType scanner() {
