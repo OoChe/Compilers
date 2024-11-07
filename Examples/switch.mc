@@ -1,18 +1,14 @@
 void main(){
-    int x;
-    int y;
+    int x, y;
 
     x = 1;
-    y = 2;
 
     switch (x) {
         case 1:
-            write(x);
+            x = 2;
             break;
-        case 2:
-            write(y);
-            break;
-        default:
+        default: 
+            x = 3;
             break;
     }
 }

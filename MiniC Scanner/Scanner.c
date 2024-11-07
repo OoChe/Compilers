@@ -29,13 +29,17 @@ char* tokenName[] = {
       "void",     "while"    "{",      "||",      "}"
 };
 
-// add sugar statement (for, do-while, switch)
+// add word statement (break, case, continue, default, do, for, switch)
 char* keyword[NO_KEYWORD] = {
-    "const",  "else",    "if",    "int",    "return",  "void",    "while",  "for",  "do",  "switch"
+    "break",    "case",    "const",  "continue","default", "do",
+    "else",     "for",     "if",     "int",     "return",  "switch",
+    "void",     "while"
 };
-// add sugar statement #
+// add word statement (break, case, continue, default, do, for, switch)
 enum tsymbol tnum[NO_KEYWORD] = {
-    tconst,    telse,     tif,     tint,     treturn,   tvoid,     twhile,   tfor,   tdo,   tswitch
+    tbreak,		  tcase,	   tconst,	   tcontinue,   tdefault,  tdo,
+    telse,		  tfor,        tif,		   tint,	    treturn,   tswitch,
+    tvoid,        twhile
 };
 
 struct tokenType scanner() {
@@ -163,6 +167,7 @@ do {
             case '(': token.number = tlparen;         break;
             case ')': token.number = trparen;         break;
             case ',': token.number = tcomma;          break;
+            case ':': token.number = tcolon;          break;    // 추가된 심볼
             case ';': token.number = tsemicolon;      break;
             case '[': token.number = tlbracket;       break;
             case ']': token.number = trbracket;       break;

@@ -1,8 +1,4 @@
-﻿  Parser.c
-C:\GitHub\Compilers\MiniC Parser\Parser.c(163,17): warning C4133: '함수': 'char [100]'과(와) 'FILE *' 사이의 형식이 호환되지 않습니다.
-  Scanner.c
-  코드를 생성하고 있습니다...
-  tlist.h
+﻿  Scanner.c
   Compiler.vcxproj -> C:\GitHub\Compilers\x64\Debug\Compiler.exe
   'pwsh.exe'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
   배치 파일이 아닙니다.

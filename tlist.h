@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-// add NO_KEYWORD 3 (for, do-while, switch)
-#define NO_KEYWORD 10
+// add NO_KEYWORD count (break, case, continue, default, do, for, switch)
+#define NO_KEYWORD 14
 #define ID_LENGTH 12
 // input sourceFile Name
 FILE* sourceFile;
