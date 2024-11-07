@@ -1,0 +1,27 @@
+﻿  Parser.c
+C:\GitHub\Compilers\minic parser\Parser.c(24,19): error C2079: 'token'은(는) 정의되지 않은 struct 'tokenType'을(를) 사용합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(30,44): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(38,28): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(64,20): error C2440: '함수': 'int'에서 'tokenType'(으)로 변환할 수 없습니다.
+C:\GitHub\Compilers\minic parser\Parser.c(64,15): warning C4024: 'printToken': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic parser\Parser.c(96,6): error C2037: 'number'의 왼쪽은 정의되지 않은 구조체/공용 구조체 'tokenType'을(를) 지정합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(96,28): error C2065: 'tident': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(97,16): error C2037: 'value'의 왼쪽은 정의되지 않은 구조체/공용 구조체 'tokenType'을(를) 지정합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(98,11): error C2037: 'number'의 왼쪽은 정의되지 않은 구조체/공용 구조체 'tokenType'을(를) 지정합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(98,34): error C2065: 'tnumber': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(99,16): error C2037: 'value'의 왼쪽은 정의되지 않은 구조체/공용 구조체 'tokenType'을(를) 지정합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(101,25): error C2065: 'tokenName': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(101,26): error C2037: 'number'의 왼쪽은 정의되지 않은 구조체/공용 구조체 'tokenType'을(를) 지정합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(107,19): error C2079: 'tok'은(는) 정의되지 않은 struct 'tokenType'을(를) 사용합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(115,11): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(115,25): error C2065: 'teof': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(116,11): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(116,28): error C2065: 'tlparen': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(117,16): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(117,33): error C2065: 'trparen': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(118,11): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(118,28): error C2065: 'tlbrace': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(119,16): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(119,33): error C2065: 'trbrace': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic parser\Parser.c(120,12): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+C:\GitHub\Compilers\minic parser\Parser.c(120,32): error C2065: 'tsemicolon': 선언되지 않은 식별자입니다.

@@ -7,10 +7,10 @@ FILE *astFile;                          // AST file
 FILE *sourceFile;                       // miniC source program
 FILE *ucodeFile;                        // ucode file
 
-#include "src\Scanner.c"
-#include "src\Parser.c"
-#include "src\sdt.c"
-#include "src\EmitCode.c"
+#include "../MiniC Scanner/Scanner.c"
+#include "../MiniC Parser/Parser.c"
+#include "../SDT/sdt.c"
+#include "./EmitCode.c"
 #include "src\SymTab.c"
 
 void codeGen(Node *ptr);
