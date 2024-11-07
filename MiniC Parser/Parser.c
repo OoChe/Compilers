@@ -143,10 +143,11 @@ void errorRecovery() {
 }
 
 int main(void) {
-	sourceFile = fopen("./Examples/bubble.mc", "r");
+	// input file path
+	sourceFile = fopen("C:\\GitHub\\Compilers\\Examples\\bubble.mc", "r");
 	if (sourceFile == NULL) {
 		printf("Error: 파일을 열 수 없습니다.\n");
-		return 0;
+		return 1;
 	}
 	printf("Starting right parse:\n");
 	parser();  // 파싱 시작
