@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
-
-FILE* sourceFile = "../Examples/perfect.mc";
+//#include <string.h>
+//#include <stdlib.h>
+//#include <ctype.h>
 
 int superLetter(char ch);
 int superLetterOrDigit(char ch);

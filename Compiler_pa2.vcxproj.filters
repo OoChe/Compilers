@@ -21,8 +21,25 @@
     <ClCompile Include="minic scanner\Scanner.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="u-code interpreter\UpgradeLog.htm" />
+    <None Include="MiniC Grammar\MiniC.gr">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="MiniC Grammar\MiniC.lst">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="MiniC Grammar\MiniC.tbl">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

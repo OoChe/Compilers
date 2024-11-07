@@ -25,3 +25,104 @@ C:\GitHub\Compilers\minic parser\Parser.c(119,16): error C2224: '.number' 왼쪽
 C:\GitHub\Compilers\minic parser\Parser.c(119,33): error C2065: 'trbrace': 선언되지 않은 식별자입니다.
 C:\GitHub\Compilers\minic parser\Parser.c(120,12): error C2224: '.number' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
 C:\GitHub\Compilers\minic parser\Parser.c(120,32): error C2065: 'tsemicolon': 선언되지 않은 식별자입니다.
+  Scanner.c
+C:\GitHub\Compilers\minic scanner\Scanner.c(76,42): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(76,42): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(76,32): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(81,34): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(81,34): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(81,24): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(85,29): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(85,29): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(85,19): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(102,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(102,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(102,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(105,49): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(105,49): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(105,39): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(106,31): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(106,31): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(106,21): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(109,32): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(109,32): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(109,22): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(112,51): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(112,51): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(112,41): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(116,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(116,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(116,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(119,53): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(119,53): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(119,43): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(123,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(123,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(123,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(129,30): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(129,30): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(129,20): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(133,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(133,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(133,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(136,53): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(136,53): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(136,43): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(140,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(140,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(140,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(143,53): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(143,53): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(143,43): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(147,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(147,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(147,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(151,56): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(151,56): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(151,46): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(155,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(155,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(155,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(159,59): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(159,59): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(159,49): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(163,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(163,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(163,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(166,54): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(166,54): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(166,44): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(170,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(170,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(170,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(173,53): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(173,53): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(173,43): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(177,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(177,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(177,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(180,53): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(180,53): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(180,43): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(184,44): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(184,44): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(184,34): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(187,51): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(187,51): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(187,41): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(244,24): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(244,24): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(244,14): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(246,46): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(246,46): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(246,36): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(252,27): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(252,27): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(252,17): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(259,26): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(259,26): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(259,16): warning C4024: 'fgetc': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(262,26): error C2065: 'sourceFile': 선언되지 않은 식별자입니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(262,26): warning C4047: '함수': 'FILE *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\GitHub\Compilers\minic scanner\Scanner.c(262,16): warning C4024: 'ungetc': 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
+  코드를 생성하고 있습니다...

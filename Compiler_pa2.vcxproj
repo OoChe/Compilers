@@ -98,11 +98,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.c" />
     <ClCompile Include="minic parser\Parser.c" />
     <ClCompile Include="minic scanner\Scanner.c" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MiniC Grammar\MiniC.gr" />
+    <None Include="MiniC Grammar\MiniC.lst" />
+    <None Include="MiniC Grammar\MiniC.tbl" />
     <None Include="u-code interpreter\UpgradeLog.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="parser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
