@@ -98,6 +98,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Examples\bubble.mc" />
+    <None Include="Examples\comment.mc" />
+    <None Include="Examples\ext.mc" />
+    <None Include="Examples\factorial.mc" />
+    <None Include="Examples\mod.mc" />
+    <None Include="Examples\pal.mc" />
+    <None Include="Examples\perfect.mc" />
+    <None Include="Examples\prime.mc" />
+    <None Include="Examples\retval.mc" />
+    <None Include="Examples\switch.mc" />
+    <None Include="Examples\test.mc" />
     <None Include="MiniC Grammar\MiniC.gr" />
     <None Include="MiniC Grammar\MiniC.lst" />
     <None Include="MiniC Grammar\MiniC.tbl" />

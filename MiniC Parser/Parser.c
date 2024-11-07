@@ -142,16 +142,25 @@ void errorRecovery() {
 	sp = i;
 }
 
-int main(void) {
-	// input file path
-	sourceFile = fopen("C:\\GitHub\\Compilers\\Examples\\bubble.mc", "r");
-	if (sourceFile == NULL) {
-		printf("Error: 파일을 열 수 없습니다.\n");
-		return 1;
+int main(int argc, char* argv[]) {
+	char fileName[100];
+
+	printf(" *** start of Mini C Compiler\n");
+	if (argc != 2) {
+		printf("error of argc");
+		exit(1);
 	}
-	printf("Starting right parse:\n");
-	parser();  // 파싱 시작
-	fclose(sourceFile);
+	strcpy(fileName, argv[1]);
+	printf("   * source file name: %s\n", fileName);
+
+	if ((sourceFile = fopen(fileName, "r")) == NULL) {
+		printf("Not correct file");
+		exit(1);
+	}
+
+	printf(" === start of Parser\n");
+	parser();
+	fclose(fileName);
 
 	return 0;
 }

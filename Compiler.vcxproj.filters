@@ -25,6 +25,39 @@
     <None Include="MiniC Grammar\MiniC.tbl">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Examples\bubble.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\comment.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\ext.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\factorial.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\mod.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\pal.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\perfect.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\prime.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\retval.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\test.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Examples\switch.mc">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniC Parser\Parser.c">
