@@ -1,5 +1,5 @@
 #include "../MiniC Grammar/MiniC.tbl"                 /* Mini C table for appendix A */
-#include "../tlist.h"
+#include "../token.h"
 
 //#define  NO_RULES    97            /* number of rules */
 //#define  GOAL_RULE  (NO_RULES+1)   /* accept rule */

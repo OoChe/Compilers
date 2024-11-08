@@ -1,4 +1,4 @@
-#include "../tlist.h"
+#include "../token.h"
 
 int superLetter(char ch);
 int superLetterOrDigit(char ch);

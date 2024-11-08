@@ -118,7 +118,7 @@
   <ItemGroup>
     <ClCompile Include="MiniC Parser\Parser.c" />
     <ClCompile Include="MiniC Scanner\Scanner.c" />
-    <ClCompile Include="tlist.h" />
+    <ClCompile Include="token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

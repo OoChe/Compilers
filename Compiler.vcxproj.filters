@@ -69,7 +69,7 @@
     <ClCompile Include="MiniC Scanner\Scanner.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tlist.h">
+    <ClCompile Include="token.h">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
