@@ -6,7 +6,7 @@ int getNumber(char firstCharacter);
 int hexValue(char ch);
 void lexicalError(int n);
 
-// add do-while, for, switch token name
+// add token name (break, case, continue, default, do, for, switch)
 char* tokenName[] = {
       "!",       "!=",       "%",      "%=",      "%ident",  "%number",
     /* 0          1          2         3          4          5        */
@@ -167,7 +167,7 @@ do {
             case '(': token.number = tlparen;         break;
             case ')': token.number = trparen;         break;
             case ',': token.number = tcomma;          break;
-            case ':': token.number = tcolon;          break;    // Ãß°¡µÈ ½Éº¼
+            case ':': token.number = tcolon;          break;    // colonì— ëŒ€í•œ ë‚´ìš© ì¶”ê°€
             case ';': token.number = tsemicolon;      break;
             case '[': token.number = tlbracket;       break;
             case ']': token.number = trbracket;       break;

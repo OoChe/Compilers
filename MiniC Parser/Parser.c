@@ -142,25 +142,21 @@ void errorRecovery() {
 	sp = i;
 }
 
-int main(int argc, char* argv[]) {
-	char fileName[100];
-
+int main(int argc, char *argv[]) {		// 명령줄 인자 추가
+	char fileName[100];		// 저장할 파일명
 	printf(" *** start of Mini C Compiler\n");
-	if (argc != 2) {
-		printf("error of argc");
+	if (argc != 2 ){		// 파일 경로와 파일명이 정확히 포함되어있지 않은 경우
+		printf("incorrect file info(path, name)");
 		exit(1);
 	}
 	strcpy(fileName, argv[1]);
-	printf("   * source file name: %s\n", fileName);
-
-	if ((sourceFile = fopen(fileName, "r")) == NULL) {
+	printf("  * source file name: %s\n", fileName);
+	if ((sourceFile = fopen(fileName, "r")) == NULL) {      // 파일 내 정보가 없는 경우
 		printf("Not correct file");
 		exit(1);
 	}
-
 	printf(" === start of Parser\n");
-	parser();
+	parser();		// 파서 실행
 	fclose(fileName);
-
 	return 0;
 }
