@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {		// 명령줄 인자 추가
 	}
 	strcpy(fileName, argv[1]);
 	printf("  * source file name: %s\n", fileName);
-	if ((sourceFile = fopen(fileName, "r")) == NULL) {      // 파일 내 정보가 없는 경우
+	if ((sourceFile = fopen(fileName, "r")) == NULL) {		// 파일 내 정보가 없는 경우
 		printf("Not correct file");
 		exit(1);
 	}

@@ -98,6 +98,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\Users\김지수\OneDrive\바탕 화면\컴파일러\[PA #2] 코드 및 예시파일\Examples\error.mc" />
+    <None Include="..\..\Users\김지수\OneDrive\바탕 화면\컴파일러\[PA #2] 코드 및 예시파일\Examples\main.mc" />
     <None Include="Examples\bubble.mc" />
     <None Include="Examples\comment.mc" />
     <None Include="Examples\dowhile.mc" />
@@ -118,7 +120,6 @@
   <ItemGroup>
     <ClCompile Include="MiniC Parser\Parser.c" />
     <ClCompile Include="MiniC Scanner\Scanner.c" />
-    <ClCompile Include="token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

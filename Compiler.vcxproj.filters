@@ -61,6 +61,12 @@
     <None Include="Examples\dowhile.mc">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\..\Users\김지수\OneDrive\바탕 화면\컴파일러\[PA #2] 코드 및 예시파일\Examples\main.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\Users\김지수\OneDrive\바탕 화면\컴파일러\[PA #2] 코드 및 예시파일\Examples\error.mc">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniC Parser\Parser.c">
@@ -68,9 +74,6 @@
     </ClCompile>
     <ClCompile Include="MiniC Scanner\Scanner.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="token.h">
-      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

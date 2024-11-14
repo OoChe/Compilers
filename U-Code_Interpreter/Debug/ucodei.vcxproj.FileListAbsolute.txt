@@ -1,0 +1,2 @@
+C:\GitHub\Compilers\U-Code Interpreter\Debug\ucodei.exe
+C:\GitHub\Compilers\U-Code_Interpreter\Debug\ucodei.exe
