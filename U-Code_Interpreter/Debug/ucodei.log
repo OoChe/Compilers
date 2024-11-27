@@ -1,11 +1,10 @@
 ﻿cl : 명령줄  warning D9035: 'Gm' 옵션은 더 이상 사용되지 않으므로 이후 릴리스에서 제거될 예정입니다.
   ucodei.cpp
-C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(194,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(197,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(200,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(214,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(236,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-ucodei.obj : warning LNK4075: '/EDITANDCONTINUE'이(가) '/SAFESEH' 사양으로 인해 무시됩니다.
+C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(195,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(198,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(201,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(215,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\GitHub\Compilers\U-Code_Interpreter\ucodei.cpp(237,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   ucodei.vcxproj -> C:\GitHub\Compilers\U-Code_Interpreter\Debug\ucodei.exe
   'pwsh.exe'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
   배치 파일이 아닙니다.

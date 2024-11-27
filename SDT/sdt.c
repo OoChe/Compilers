@@ -1,9 +1,8 @@
-void printNode(Node* pt, int indent);
-void printTree(Node* pt, int indent);
+#include "../nodeType.h"
 
-void printTree(Node* pt, int indent)
-{
+void printTree(Node* pt, int indent){
 	Node* p = pt;
+
 	while (p != NULL) {
 		printNode(p, indent);
 		if (p->noderep == nonterm) printTree(p->son, indent + 5);
@@ -11,9 +10,8 @@ void printTree(Node* pt, int indent)
 	}
 }
 
-void printNode(Node* pt, int indent)
-{
-	extern FILE* astFile;
+void printNode(Node* pt, int indent){
+	// ast를 출력할 파일을 생성해서 지정해줄 필요 있음
 	int i;
 
 	for (i = 1; i <= indent; i++) fprintf(astFile, " ");

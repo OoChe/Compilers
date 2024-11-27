@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#define _CRT_SECURE_NO_WARNINGS
 
 using namespace std;
 
@@ -505,7 +506,7 @@ void Interpret::execute(int startAddr)
 		switch (instrBuf[pc].opcode)
 		{
 		case notop:
-			stack.push(!stack.pop());
+			stack.push(~stack.pop());
 			break;
 		case neg:
 			stack.push(-stack.pop());

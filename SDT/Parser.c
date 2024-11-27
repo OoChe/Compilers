@@ -1,17 +1,13 @@
-#include "MiniC.tbl"                 /* Mini C table for appendix A */
+#include "../MiniC Grammar/MiniC.tbl"                 /* Mini C table for appendix A */
+#include "../nodeType.h"
+#include "../token.h"
+#include <stdlib.h>
+
 //#define  NO_RULES    97            /* number of rules */
 //#define  GOAL_RULE  (NO_RULES+1)   /* accept rule */
 //#define  NO_SYMBOLS  85            /* number of grammar symbols */
 //#define  NO_STATES  153            /* number of states */
 #define  PS_SIZE    100              /* size of parsing stack */
-
-typedef struct nodeType {
-	struct tokenType token;            	// 토큰 종류
-	enum { terminal, nonterm } noderep; // 노드의 종류
-	struct nodeType* son;             	// 왼쪽 링크
-	struct nodeType* brother;         	// 오른쪽 링크
-	struct nodeType* father;		   	// 상위 링크
-} Node;
 
 void semantic(int);
 void printToken(struct tokenType token);
@@ -26,34 +22,21 @@ int meaningfulToken(struct tokenType token);
 /***************************************************************************
  *  문법과 tbl이 확장된 경우, PGS의 출력을 확인하며 변경 사항을 적용해줘야 함.
  ***************************************************************************/
-enum nodeNumber {
-	ERROR_NODE, // ERROR_NODE가 0번으로 지정되어야 함.
-	ACTUAL_PARAM, ADD, ADD_ASSIGN, ARRAY_VAR, ASSIGN_OP,
-	CALL, COMPOUND_ST, CONST_NODE, DCL, DCL_ITEM,
-	DCL_LIST, DCL_SPEC, DIV, DIV_ASSIGN, EQ,
-	EXP_ST, FORMAL_PARA, FUNC_DEF, FUNC_HEAD,
-	GE, GT, IDENT, IF_ELSE_ST, IF_ST,
-	INDEX, INT_NODE, LE, LOGICAL_AND, LOGICAL_NOT,
-	LOGICAL_OR, LT, MOD, MOD_ASSIGN, MUL,
-	MUL_ASSIGN, NE, NUMBER, PARAM_DCL, POST_DEC,
-	POST_INC, PRE_DEC, PRE_INC, PROGRAM, RETURN_ST,
-	SIMPLE_VAR, STAT_LIST, SUB, SUB_ASSIGN, UNARY_MINUS,
-	VOID_NODE, WHILE_ST
-};
-
 char* nodeName[] = {
    "ERROR_NODE",
    "ACTUAL_PARAM", "ADD",         "ADD_ASSIGN",   "ARRAY_VAR",   "ASSIGN_OP",
-   "CALL",         "COMPOUND_ST", "CONST_NODE",   "DCL",         "DCL_ITEM",
+   "CALL",         "COMPOUND_ST", "CONST_TYPE",   "DCL",         "DCL_ITEM",
    "DCL_LIST",     "DCL_SPEC",    "DIV",          "DIV_ASSIGN",  "EQ",
-   "EXP_ST",      "FORMAL_PARA",  "FUNC_DEF",    "FUNC_HEAD",
+   "EXP_ST",       "FORMAL_PARA", "FUNC_DEF",     "FUNC_HEAD",
    "GE",           "GT",          "IDENT",        "IF_ELSE_ST",  "IF_ST",
-   "INDEX",        "INT_NODE",    "LE",           "LOGICAL_AND", "LOGICAL_NOT",
+   "INDEX",        "INT_TYPE",    "LE",           "LOGICAL_AND", "LOGICAL_NOT",
    "LOGICAL_OR",   "LT",          "MOD",          "MOD_ASSIGN",  "MUL",
    "MUL_ASSIGN",   "NE",          "NUMBER",       "PARAM_DCL",   "POST_DEC",
    "POST_INC",     "PRE_DEC",     "PRE_INC",      "PROGRAM",     "RETURN_ST",
    "SIMPLE_VAR",   "STAT_LIST",   "SUB",          "SUB_ASSIGN",  "UNARY_MINUS",
-   "VOID_NODE",    "WHILE_ST"
+   "VOID_TYPE",    "WHILE_ST",    "DEFAULT_ST",   "CONTINUE_ST", "CASE_ST",
+   "BREAK_ST",	   "DO_WHILE_ST", "SWITCH_ST",    "FOR_ST",      "INIT_PART", 
+   "CONDITION_PART", "POST_PART", "REMAINDER"
 };
 
 // 문법이 확장되었을 경우 ruleName 역시 확장된 문법이 반영되어야 함.
@@ -63,9 +46,9 @@ int ruleName[] = {
 	/* 5            6            7            8           9           */
 	   0,           FUNC_DEF,    FUNC_HEAD,   DCL_SPEC,   0,
 	/* 10           11           12           13          14          */
-	   0,           0,           0,           CONST_NODE, INT_NODE,
+	   0,           0,           0,           CONST_TYPE, INT_TYPE,
 	/* 15           16           17           18          19          */
-	   VOID_NODE,   0,           FORMAL_PARA, 0,          0,
+	   VOID_TYPE,   0,           FORMAL_PARA, 0,          0,
 	/* 20           21           22           23          24          */
 	   0,           0,           PARAM_DCL,   COMPOUND_ST,DCL_LIST,
 	/* 25           26           27           28          29          */
@@ -79,25 +62,31 @@ int ruleName[] = {
 	/* 45           46           47           48          49          */
 	   0,           EXP_ST,      0,           0,          IF_ST,
 	/* 50           51           52           53          54          */
-	   IF_ELSE_ST,  WHILE_ST,    RETURN_ST,   0,          0,
+	   IF_ELSE_ST,  EXP_ST,      0,			  0,          CASE_ST,
 	/* 55           56           57           58          59          */
-	   ASSIGN_OP,   ADD_ASSIGN,  SUB_ASSIGN,  MUL_ASSIGN, DIV_ASSIGN,
+	   DEFAULT_ST,  CONTINUE_ST, BREAK_ST,    IF_ST,      IF_ELSE_ST,
 	/* 60           61           62           63          64          */
-	   MOD_ASSIGN,  0,           LOGICAL_OR,  0,          LOGICAL_AND,
+	   WHILE_ST,    DO_WHILE_ST, SWITCH_ST,   FOR_ST,     INIT_PART,
 	/* 65           66           67           68          69          */
-	   0,           EQ,          NE,          0,          GT,
+	   CONDITION_PART,POST_PART,RETURN_ST,    0,          ASSIGN_OP,
 	/* 70           71           72           73          74          */
-	   LT,          GE,          LE,          0,          ADD,
+	   ADD_ASSIGN,  SUB_ASSIGN,  MUL_ASSIGN,  DIV_ASSIGN, MOD_ASSIGN,
 	/* 75           76           77           78          79          */
-	   SUB,         0,           MUL,         DIV,        MOD,
+	   0,           0,           LOGICAL_OR,  0,          LOGICAL_AND,
 	/* 80           81           82           83          84          */
-	   0,           UNARY_MINUS, LOGICAL_NOT, PRE_INC,    PRE_DEC,
+	   0,           EQ,          NE,	      0,          GT,
 	/* 85           86           87           88          89          */
-	   0,           INDEX,       CALL,        POST_INC,   POST_DEC,
+	   LT,          GE,          LE,          0,          ADD,
 	/* 90           91           92           93          94          */
-	   0,           0,           ACTUAL_PARAM,0,          0,
-	/* 95           96           97                                   */
-	   0,           0,           0
+	   0,           0,           MUL,         DIV,        REMAINDER,
+	/* 95           96           97           98          99          */
+	   0,           UNARY_MINUS, LOGICAL_NOT, PRE_INC,    PRE_DEC,
+	/* 100          101          102          103         104         */
+	   0,           INDEX,       CALL,        POST_INC,   POST_DEC,
+	/* 105          106          107          108         109         */
+	   0,           0,           ACTUAL_PARAM,0,         0,
+	/* 110          111          112                   */
+	   0,           0,           0,
 };
 
 int sp;                               // stack pointer
@@ -105,8 +94,7 @@ int stateStack[PS_SIZE];              // state stack
 int symbolStack[PS_SIZE];             // symbol stack
 Node* valueStack[PS_SIZE];            // value stack
 
-Node* parser()
-{
+Node* parser(){
 	extern int parsingTable[NO_STATES][NO_SYMBOLS + 1];
 	extern int leftSymbol[NO_RULES + 1], rightLength[NO_RULES + 1];
 	int entry, ruleNumber, lhs;
@@ -119,8 +107,7 @@ Node* parser()
 	while (1) {
 		currentState = stateStack[sp];
 		entry = parsingTable[currentState][token.number];
-		if (entry > 0)                          /* shift action */
-		{
+		if (entry > 0){                          /* shift action */
 			sp++;
 			if (sp > PS_SIZE) {
 				printf("critical compiler error: parsing stack overflow");
@@ -131,15 +118,13 @@ Node* parser()
 			valueStack[sp] = meaningfulToken(token) ? buildNode(token) : NULL;
 			token = scanner();
 		}
-		else if (entry < 0)                   /* reduce action */
-		{
+		else if (entry < 0) {                   /* reduce action */
 			ruleNumber = -entry;
-			if (ruleNumber == GOAL_RULE) /* accept action */
-			{
-				//                      printf(" *** valid source ***\n");
+			if (ruleNumber == GOAL_RULE) { /* accept action */
+				// printf(" *** valid source ***\n");
 				return valueStack[sp - 1];
 			}
-			//                 semantic(ruleNumber);
+			// semantic(ruleNumber);
 			ptr = buildTree(ruleName[ruleNumber], rightLength[ruleNumber]);
 			sp = sp - rightLength[ruleNumber];
 			lhs = leftSymbol[ruleNumber];
@@ -149,8 +134,7 @@ Node* parser()
 			stateStack[sp] = currentState;
 			valueStack[sp] = ptr;
 		}
-		else                               /* error action */
-		{
+		else {                               /* error action */
 			printf(" === error in source ===\n");
 			printf("Current Token : ");
 			printToken(token);
@@ -161,13 +145,11 @@ Node* parser()
 	} /* while (1) */
 } /* parser */
 
-void semantic(int n)
-{
+void semantic(int n){
 	printf("reduced rule number = %d\n", n);
 }
 
-void dumpStack()
-{
+void dumpStack(){
 	int i, start;
 
 	if (sp > 10) start = sp - 10;
@@ -183,8 +165,7 @@ void dumpStack()
 	printf("\n");
 }
 
-void printToken(struct tokenType token)
-{
+void printToken(struct tokenType token){
 	if (token.number == tident)
 		printf("%s", token.value.id);
 	else if (token.number == tnumber)
@@ -194,8 +175,7 @@ void printToken(struct tokenType token)
 
 }
 
-void errorRecovery()
-{
+void errorRecovery(){
 	struct tokenType tok;
 	int parenthesisCount, braceCount;
 	int i;
@@ -237,15 +217,13 @@ void errorRecovery()
 	sp = i;
 }
 
-int meaningfulToken(struct tokenType token)
-{
+int meaningfulToken(struct tokenType token){
 	if ((token.number == tident) || (token.number == tnumber))
 		return 1;
 	else return 0;
 }
 
-Node* buildNode(struct tokenType token)
-{
+Node* buildNode(struct tokenType token){
 	Node* ptr;
 	ptr = (Node*)malloc(sizeof(Node));
 	if (!ptr) {
@@ -258,8 +236,7 @@ Node* buildNode(struct tokenType token)
 	return ptr;
 }
 
-Node* buildTree(int nodeNumber, int rhsLength)
-{
+Node* buildTree(int nodeNumber, int rhsLength){
 	int i, j, start;
 	Node* first, * ptr;
 
@@ -287,6 +264,7 @@ Node* buildTree(int nodeNumber, int rhsLength)
 			printf("malloc error in buildTree()\n");
 			exit(1);
 		}
+		// 토큰 넘버 오류
 		ptr->token.number = nodeNumber;
 		ptr->noderep = nonterm;
 		ptr->son = first;
@@ -294,4 +272,28 @@ Node* buildTree(int nodeNumber, int rhsLength)
 		return ptr;
 	}
 	else return first;
+}
+
+int main(int argc, char* argv[]) {		// 명령줄 인자 추가
+	char fileName[100];		// 저장할 파일명
+	Node* root;
+	printf(" *** start of Mini C Compiler\n");
+	if (argc != 2) {		// 파일 경로와 파일명이 정확히 포함되어있지 않은 경우
+		printf("incorrect file info(path, name)");
+		exit(1);
+	}
+	strcpy(fileName, argv[1]);
+	printf("  * source file name: %s\n", fileName);
+	if ((sourceFile = fopen(fileName, "r")) == NULL) {		// 파일 내 정보가 없는 경우
+		printf("Not correct file");
+		exit(1);
+	}
+	printf(" === start of Parser\n");
+	root = parser();
+
+	astFile = fopen("./result.txt", "w");
+	printTree(root,2);		// 파서 실행
+	fclose(sourceFile);
+	fclose(astFile);
+	return 0;
 }

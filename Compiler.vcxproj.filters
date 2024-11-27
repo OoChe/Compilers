@@ -67,13 +67,27 @@
     <None Include="..\..\Users\김지수\OneDrive\바탕 화면\컴파일러\[PA #2] 코드 및 예시파일\Examples\error.mc">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="result.txt">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MiniC Parser\Parser.c">
+    <ClCompile Include="SDT\sdt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MiniC Scanner\Scanner.c">
+    <ClCompile Include="SDT\Parser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SDT\Scanner.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="token.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodeType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

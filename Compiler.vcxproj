@@ -115,11 +115,17 @@
     <None Include="MiniC Grammar\MiniC.gr" />
     <None Include="MiniC Grammar\MiniC.lst" />
     <None Include="MiniC Grammar\MiniC.tbl" />
+    <None Include="result.txt" />
     <None Include="u-code interpreter\UpgradeLog.htm" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MiniC Parser\Parser.c" />
-    <ClCompile Include="MiniC Scanner\Scanner.c" />
+    <ClCompile Include="SDT\Parser.c" />
+    <ClCompile Include="SDT\Scanner.c" />
+    <ClCompile Include="SDT\sdt.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nodeType.h" />
+    <ClInclude Include="token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
