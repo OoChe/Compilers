@@ -115,13 +115,15 @@
     <None Include="MiniC Grammar\MiniC.gr" />
     <None Include="MiniC Grammar\MiniC.lst" />
     <None Include="MiniC Grammar\MiniC.tbl" />
-    <None Include="result.txt" />
     <None Include="u-code interpreter\UpgradeLog.htm" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SDT\Parser.c" />
-    <ClCompile Include="SDT\Scanner.c" />
-    <ClCompile Include="SDT\sdt.c" />
+    <ClCompile Include="U-Code Translator\EmitCode.c" />
+    <ClCompile Include="U-Code Translator\MiniC.c" />
+    <ClCompile Include="U-Code Translator\Parser.c" />
+    <ClCompile Include="U-Code Translator\Scanner.c" />
+    <ClCompile Include="U-Code Translator\sdt.c" />
+    <ClCompile Include="U-Code Translator\SymTab.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nodeType.h" />

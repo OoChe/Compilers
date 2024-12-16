@@ -3,15 +3,14 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-FILE *astFile;                          // AST file
-FILE *sourceFile;                       // miniC source program
+// 이 파일명 옮기기
 FILE *ucodeFile;                        // ucode file
 
-#include "src\Scanner.c"
-#include "src\Parser.c"
-#include "src\sdt.c"
-#include "src\EmitCode.c"
-#include "src\SymTab.c"
+// EmitCode.c 내 선언된 집합체, 함수 이동할 것
+#include "./EmitCode.c"
+#include "./SymTab.c"
+#include "../nodeType.h"
+#include "../token.h"
 
 void codeGen(Node *ptr);
 void processDeclaration(Node *ptr);
@@ -30,8 +29,7 @@ int checkPredefined(Node *ptr);
 int labelCount = 0;
 int returnWithValue, lvalue;
 
-void main(int argc, char *argv[])
-{
+void main(int argc, char *argv[]) {
 	char fileName[30];
 	Node *root;
 
@@ -58,8 +56,7 @@ void main(int argc, char *argv[])
 	printf(" *** end   of Mini C Compiler\n");
 } // end of main
 
-void codeGen(Node *ptr)
-{
+void codeGen(Node *ptr) {
 	Node *p;
 	int globalSize;
 
@@ -93,16 +90,14 @@ void codeGen(Node *ptr)
 	emit0(endop);
 }
 
-void icg_error(int n)
-{
+void icg_error(int n) {
 	printf("icg_error: %d\n", n);
 	//3:printf("A Mini C Source file must be specified.!!!\n");
 	//"error in DCL_SPEC"
 	//"error in DCL_ITEM"
 }
 
-void processDeclaration(Node *ptr)
-{
+void processDeclaration(Node *ptr) {
 	int typeSpecifier, typeQualifier;
 	Node *p, *q;
 
@@ -112,14 +107,14 @@ void processDeclaration(Node *ptr)
 //	printf("processDeclaration\n");
 	// 1. process DCL_SPEC
 	typeSpecifier = INT_TYPE;		// default type
-	typeQualifier = VAR_TYPE;
+	typeQualifier = VAR_QUAL;
 	p = ptr->son;
 	while (p) {
-		if (p->token.number == INT_NODE)    typeSpecifier = INT_TYPE;
-		else if (p->token.number == CONST_NODE)  typeQualifier = CONST_TYPE;
+		if (p->token.number == INT_TYPE)    typeSpecifier = INT_SPEC;
+		else if (p->token.number == CONST_TYPE)  typeQualifier = CONST_QUAL;
 		else { // AUTO, EXTERN, REGISTER, FLOAT, DOUBLE, SIGNED, UNSIGNED
-			   printf("not yet implemented\n");
-		       return;
+			printf("not yet implemented\n");
+			return;
 		}
 		p = p->brother;
 	}
@@ -148,8 +143,7 @@ void processDeclaration(Node *ptr)
 	} // end while
 }
 
-void processSimpleVariable(Node *ptr, int typeSpecifier, int typeQualifier)
-{
+void processSimpleVariable(Node *ptr, int typeSpecifier, int typeQualifier) {
 	int stIndex, width, initialValue;
 	int sign = 1;
 	Node *p = ptr->son;          // variable name(=> identifier)
@@ -179,8 +173,7 @@ void processSimpleVariable(Node *ptr, int typeSpecifier, int typeQualifier)
 	}
 }
 
-void processArrayVariable(Node *ptr, int typeSpecifier, int typeQualifier)
-{
+void processArrayVariable(Node *ptr, int typeSpecifier, int typeQualifier) {
 	int stIndex, size;
 	Node *p = ptr->son;          // variable name(=> identifier)
 
@@ -197,8 +190,7 @@ void processArrayVariable(Node *ptr, int typeSpecifier, int typeQualifier)
 	offset += size;
 }
 
-void processFuncHeader(Node *ptr)
-{
+void processFuncHeader(Node *ptr) {
 	int noArguments, returnType;
 	int stIndex;
 	Node *p;
@@ -210,8 +202,8 @@ void processFuncHeader(Node *ptr)
 	// 1. process the function return type
 	p = ptr->son->son;
 	while (p) {
-		if (p->token.number == INT_NODE) returnType = INT_TYPE;
-		  else if (p->token.number == VOID_NODE) returnType = VOID_TYPE;
+		if (p->token.number == INT_TYPE) returnType = INT_TYPE;
+		  else if (p->token.number == VOID_TYPE) returnType = VOID_TYPE;
 		     else printf("invalid function return type\n");
 		p = p->brother;
 	}
@@ -227,14 +219,13 @@ void processFuncHeader(Node *ptr)
 	}
 
 	// 3. insert the function name
-	stIndex = insert(ptr->son->brother->token.value.id, returnType, FUNC_TYPE,
+	stIndex = insert(ptr->son->brother->token.value.id, returnType, FUNC_QUAL,
 		             1/*base*/, 0/*offset*/, noArguments/*width*/, 0/*initialValue*/);
 //	if (!strcmp("main", functionName)) mainExist = 1;
 
 }
 
-void processFunction(Node *ptr)
-{
+void processFunction(Node *ptr) {
 	int paraType, noArguments;
 	int typeSpecifier, returnType;
 	int p1, p2, p3;
@@ -302,8 +293,7 @@ void processFunction(Node *ptr)
 	reset();
 }
 
-void processStatement(Node *ptr)
-{
+void processStatement(Node *ptr) {
 	Node *p;
 
 	if (ptr == NULL) return;		// null statement
@@ -377,19 +367,16 @@ void processStatement(Node *ptr)
 	} //end switch
 }
 
-void genLabel(char *label)
-{
+void genLabel(char *label) {
 	sprintf(label, "$$%d", labelCount++);
 }
 
-void processCondition(Node *ptr)
-{
+void processCondition(Node *ptr) {
 	if (ptr->noderep == nonterm) processOperator(ptr);
 		else rv_emit(ptr);
 }
 
-void rv_emit(Node *ptr)
-{
+void rv_emit(Node *ptr) {
 	int stIndex;
 
 	if (ptr->token.number == tnumber)		// number
@@ -406,8 +393,7 @@ void rv_emit(Node *ptr)
 	}
 }
 
-void processOperator(Node *ptr)
-{
+void processOperator(Node *ptr) {
 	int stIndex;
 
 	if (ptr->noderep == terminal) {
@@ -649,8 +635,7 @@ void processOperator(Node *ptr)
 	} //end switch
 }
 
-int checkPredefined(Node *ptr)
-{
+int checkPredefined(Node *ptr) {
 	char *functionName;
 	int stIndex;
 

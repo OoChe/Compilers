@@ -67,26 +67,32 @@
     <None Include="..\..\Users\김지수\OneDrive\바탕 화면\컴파일러\[PA #2] 코드 및 예시파일\Examples\error.mc">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="result.txt">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SDT\sdt.c">
+    <ClCompile Include="U-Code Translator\EmitCode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SDT\Parser.c">
+    <ClCompile Include="U-Code Translator\MiniC.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SDT\Scanner.c">
+    <ClCompile Include="U-Code Translator\SymTab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code Translator\Parser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code Translator\Scanner.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code Translator\sdt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="token.h">
+    <ClInclude Include="nodeType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="nodeType.h">
+    <ClInclude Include="token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
