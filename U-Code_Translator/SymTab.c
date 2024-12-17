@@ -1,31 +1,6 @@
-// https://github.com/hanXen/minic_compiler.git
-
-#include <stdio.h>
-
-#define LABEL_SIZE 10
-#define TABLE_SIZE 100
-
-struct SymbolTable {
-    char name[LABEL_SIZE];
-    int typeSpecifier;
-    int typeQualifier;
-    int base;
-    int offset;
-    int width;
-    int initialValue;
-};
-
-typedef enum {
-    NONE_SPEC, VOID_SPEC, INT_SPEC, CHAR_SPEC, FLOAT_SPEC
-} typeSpecifier;
-
-typedef enum {
-    NONE_QUAL, CONST_QUAL, VAR_QUAL, FUNC_QUAL, PARAM_QUAL
-} typeQualifier;
-
-struct SymbolTable symbolTable[TABLE_SIZE];
-int st_top;
-int base, offset;
+// [Symbol Table 구현 코드]
+// 참고 코드 원본: https://github.com/hanXen/minic_compiler.git
+#include "../emit.h"
 
 void initSymbolTable() {
     base = 1;
@@ -56,3 +31,11 @@ int lookup(char* name) {
     return -1;
 }
 
+void set(){
+    base++;
+    offset = 1;
+}
+
+void reset(){
+    base--;
+}

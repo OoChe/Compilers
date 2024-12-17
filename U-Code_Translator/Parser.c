@@ -1,4 +1,4 @@
-#include "../MiniC Grammar/MiniC.tbl"                 /* Mini C table for appendix A */
+#include "./MiniC.tbl"                 /* Mini C table for appendix A */
 #include "../nodeType.h"
 #include "../token.h"
 #include <stdlib.h>
@@ -60,25 +60,25 @@ int ruleName[] = {
 	/* 40           41           42           43          44          */
 	   0,           0,           0,           0,          0,
 	/* 45           46           47           48          49          */
-	   0,           EXP_ST,      0,           0,          IF_ST,
+	   0,           0,		     0,           0,          0,
 	/* 50           51           52           53          54          */
-	   IF_ELSE_ST,  EXP_ST,      0,			  0,          CASE_ST,
+	   0,			EXP_ST,      0,			  0,          CASE_ST,
 	/* 55           56           57           58          59          */
 	   DEFAULT_ST,  CONTINUE_ST, BREAK_ST,    IF_ST,      IF_ELSE_ST,
 	/* 60           61           62           63          64          */
 	   WHILE_ST,    DO_WHILE_ST, SWITCH_ST,   FOR_ST,     INIT_PART,
 	/* 65           66           67           68          69          */
-	   CONDITION_PART,POST_PART,RETURN_ST,    0,          ASSIGN_OP,
+	   CONDITION_PART,POST_PART,RETURN_ST,    0,          0,
 	/* 70           71           72           73          74          */
-	   ADD_ASSIGN,  SUB_ASSIGN,  MUL_ASSIGN,  DIV_ASSIGN, MOD_ASSIGN,
+	   ASSIGN_OP,   ADD_ASSIGN,  SUB_ASSIGN,  MUL_ASSIGN, DIV_ASSIGN,
 	/* 75           76           77           78          79          */
-	   0,           0,           LOGICAL_OR,  0,          LOGICAL_AND,
+	   MOD_ASSIGN,  0,           LOGICAL_OR,  0,          LOGICAL_AND,
 	/* 80           81           82           83          84          */
 	   0,           EQ,          NE,	      0,          GT,
 	/* 85           86           87           88          89          */
 	   LT,          GE,          LE,          0,          ADD,
 	/* 90           91           92           93          94          */
-	   0,           0,           MUL,         DIV,        REMAINDER,
+	   SUB,         0,           MUL,         DIV,        REMAINDER,
 	/* 95           96           97           98          99          */
 	   0,           UNARY_MINUS, LOGICAL_NOT, PRE_INC,    PRE_DEC,
 	/* 100          101          102          103         104         */
@@ -196,7 +196,7 @@ void errorRecovery(){
 	// step 2: adjust state stack
 	for (i = sp; i >= 0; i--) {
 		// statement_list ->  statement_list .  statement
-		if (stateStack[i] == 36) break;	 // second statement part
+		if (stateStack[i] == 37) break;	 // second statement part
 
 		// statement_list ->  .  statement
 		// statement_list ->  .  statement_list statement

@@ -69,31 +69,34 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="U-Code Translator\EmitCode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="U-Code Translator\MiniC.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="U-Code Translator\SymTab.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="U-Code Translator\Parser.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="U-Code Translator\Scanner.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="U-Code Translator\sdt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="nodeType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="emit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="U-Code_Translator\EmitCode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code_Translator\MiniC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code_Translator\Parser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code_Translator\Scanner.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code_Translator\sdt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U-Code_Translator\SymTab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

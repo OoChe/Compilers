@@ -12,9 +12,9 @@ enum nodeNumber {
 	ERROR_NODE, // ERROR_NODE가 0번으로 지정되어야 함.
 	ACTUAL_PARAM,	ADD,			ADD_ASSIGN,		ARRAY_VAR,	 ASSIGN_OP,
 	CALL,			COMPOUND_ST,	CONST_TYPE,		DCL,		 DCL_ITEM,
-	DCL_LIST,		DCL_SPEC, DIV,	DIV_ASSIGN,		EQ,
+	DCL_LIST,		DCL_SPEC,		DIV,			DIV_ASSIGN,	 EQ,
 	EXP_ST,			FORMAL_PARA,	FUNC_DEF,		FUNC_HEAD,
-	GE, GT,			IDENT,			IF_ELSE_ST,		IF_ST,
+	GE,				GT,				IDENT,			IF_ELSE_ST,	 IF_ST,
 	INDEX,			INT_TYPE,		LE,				LOGICAL_AND, LOGICAL_NOT,
 	LOGICAL_OR,		LT,				MOD,			MOD_ASSIGN,	 MUL,
 	MUL_ASSIGN,		NE,				NUMBER,			PARAM_DCL,	 POST_DEC,
@@ -37,6 +37,7 @@ typedef struct nodeType {
 	struct nodeType* father;		   	// 상위 링크
 } Node;
 
+Node* parser();
 void printNode(Node* pt, int indent);
 void printTree(Node* pt, int indent);
 

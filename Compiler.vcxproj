@@ -22,6 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{44BD2EC5-E1D1-405F-9E84-8F7774CFE23A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -118,16 +119,17 @@
     <None Include="u-code interpreter\UpgradeLog.htm" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="U-Code Translator\EmitCode.c" />
-    <ClCompile Include="U-Code Translator\MiniC.c" />
-    <ClCompile Include="U-Code Translator\Parser.c" />
-    <ClCompile Include="U-Code Translator\Scanner.c" />
-    <ClCompile Include="U-Code Translator\sdt.c" />
-    <ClCompile Include="U-Code Translator\SymTab.c" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="emit.h" />
     <ClInclude Include="nodeType.h" />
     <ClInclude Include="token.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="U-Code_Translator\EmitCode.c" />
+    <ClCompile Include="U-Code_Translator\MiniC.c" />
+    <ClCompile Include="U-Code_Translator\Parser.c" />
+    <ClCompile Include="U-Code_Translator\Scanner.c" />
+    <ClCompile Include="U-Code_Translator\sdt.c" />
+    <ClCompile Include="U-Code_Translator\SymTab.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

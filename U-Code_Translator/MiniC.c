@@ -3,35 +3,20 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-// 이 파일명 옮기기
-FILE *ucodeFile;                        // ucode file
-
-// EmitCode.c 내 선언된 집합체, 함수 이동할 것
-#include "./EmitCode.c"
-#include "./SymTab.c"
-#include "../nodeType.h"
 #include "../token.h"
-
-void codeGen(Node *ptr);
-void processDeclaration(Node *ptr);
-void processFuncHeader(Node *ptr);
-void processFunction(Node *ptr);
-void icg_error(int n);
-void processSimpleVariable(Node *ptr, int typeSpecifier, int typeQualifier);
-void processArrayVariable(Node *ptr, int typeSpecifier, int typeQualifier);
-void processStatement(Node *ptr);
-void processOperator(Node *ptr);
-void processCondition(Node *ptr);
-void rv_emit(Node *ptr);
-void genLabel(char *label);
-int checkPredefined(Node *ptr);
+#include "../nodeType.h"
+// 선언부 코드 내용 헤더파일 분리
+#include "../emit.h"
 
 int labelCount = 0;
 int returnWithValue, lvalue;
 
-void main(int argc, char *argv[]) {
-	char fileName[30];
-	Node *root;
+void main(int argc, char* argv[]) {
+	char fileName[100];
+	char baseName[100];
+	char astFileName[100];
+	char ucoFileName[100];
+	Node* root;
 
 	printf(" *** start of Mini C Compiler\n");
 	if (argc != 2) {
@@ -45,25 +30,51 @@ void main(int argc, char *argv[]) {
 		icg_error(2);
 		exit(1);
 	}
-	astFile = fopen(strcat(strtok(fileName, "."), ".ast"), "w");
-	ucodeFile = fopen(strcat(strtok(fileName, "."), ".uco"), "w");
+
+	// 파일 이름 처리
+	char* dotPosition = strrchr(fileName, '.');
+	if (dotPosition != NULL) {
+		*dotPosition = '\0';  // 확장자 제거
+	}
+	strcpy(baseName, fileName);
+	sprintf(astFileName, "%s.ast", baseName);
+	sprintf(ucoFileName, "%s.uco", baseName);
+
+	// AST 파일 생성
+	astFile = fopen(astFileName, "w");
+	if (astFile == NULL) {
+		perror("Error opening AST file");
+		exit(1);
+	}
+	// UCO 파일 생성
+	ucodeFile = fopen(ucoFileName, "w");
+	if (ucodeFile == NULL) {
+		perror("Error opening UCO file");
+		exit(1);
+	}
 
 	printf(" === start of Parser\n");
-    root = parser();
+	root = parser();
 	printTree(root, 0);
 	printf(" === start of ICG\n");
 	codeGen(root);
 	printf(" *** end   of Mini C Compiler\n");
 } // end of main
 
+
 void codeGen(Node *ptr) {
 	Node *p;
 	int globalSize;
+	int stIndex;
 
 	initSymbolTable();
 	// first, process the declaration part
     for (p=ptr->son; p; p=p->brother) {
-		if (p->token.number == DCL) processDeclaration(p->son);
+		if (p->token.number == DCL) {
+			processDeclaration(p->son);
+			for (stIndex = 0; stIndex < st_top; stIndex++) //s global variable definition
+				emitSym(symbolTable[stIndex].base, symbolTable[stIndex].offset, symbolTable[stIndex].width);
+		}
 		else if (p->token.number == FUNC_DEF) processFuncHeader(p->son);
 		else icg_error(3);
 	}
@@ -72,7 +83,7 @@ void codeGen(Node *ptr) {
 	globalSize = offset-1;
 //	printf("size of global variables = %d\n", globalSize);
 
-	genSym(base);
+	// genSym(base);
 
 	// second, process the function part
     for (p=ptr->son; p; p=p->brother)
@@ -190,7 +201,7 @@ void processArrayVariable(Node *ptr, int typeSpecifier, int typeQualifier) {
 	offset += size;
 }
 
-void processFuncHeader(Node *ptr) {
+void processFuncHeader(Node* ptr) {
 	int noArguments, returnType;
 	int stIndex;
 	Node *p;
@@ -225,7 +236,7 @@ void processFuncHeader(Node *ptr) {
 
 }
 
-void processFunction(Node *ptr) {
+void processFunction(Node* ptr) {
 	int paraType, noArguments;
 	int typeSpecifier, returnType;
 	int p1, p2, p3;
@@ -241,17 +252,40 @@ void processFunction(Node *ptr) {
   // set symbol table for the function
 	set();
 
-	// 1. process formal parameters
-	// ...
-	// ... need to implemented !!
-	// ...
+	// 1. process formal parameters - implement
+	p = ptr->son->son->brother->brother;	// FORMAL_PARA
+	p = p->son;								// PARAM_DCL
+	noArguments = 0;
 
-	// 2. process the declaration part in function body
+	while (p) {
+		q = p->son->son;					// DCL_SPEC
+		switch (q->token.number) {
+			case INT_TYPE: typeSpecifier = INT_SPEC;  break;
+			default: printf("invalid function argument type\n");
+		}
+		q = p->son->brother;				// SIMPLE_VAR or ARRAY_VAR
+		if (q->token.number == SIMPLE_VAR) paraType = 0;
+		else if (q->token.number == ARRAY_VAR) paraType = 1;
+		else printf("invalid argument passing\n");
+
+		if (paraType == 0) paraType = 1;
+		else if (paraType == 1) {
+			paraType = p->brother->token.value.num;
+		}
+		stIndex = insert(q->son->token.value.id, typeSpecifier, PARAM_QUAL,
+			base, offset, paraType, 0);
+		offset++;
+		noArguments++;
+		p = p->brother;
+	}
+
+	// 2. process the declaration part in function body - implement
 	p = ptr->son->brother;			// COMPOUND_ST
 	p = p->son->son;				// DCL
-	// ...
-	// ... need to implemented !!
-	// ...
+	while (p) {
+		processDeclaration(p->son);
+		p = p->brother;
+	}
 
 
 	// 3. emit the function start code
@@ -266,14 +300,22 @@ void processFunction(Node *ptr) {
 
 
 //	dumpSymbolTable();
-	genSym(base);
+	for (stIndex = st_top - p1; stIndex < st_top; stIndex++){ //s local variable definition
+		if ((symbolTable[stIndex].typeQualifier == FUNC_QUAL) ||
+			(symbolTable[stIndex].typeQualifier == CONST_QUAL)) continue;
+		if (base == symbolTable[stIndex].base)
+			emitSym(symbolTable[stIndex].base, symbolTable[stIndex].offset, symbolTable[stIndex].width);
+	}
 
 	// 4. process the statement part in function body
 	p = ptr->son->brother->son->brother;	// STAT_LIST
 	returnWithValue = 0;
-	// ...
-	// ... need to implemented !!
-	// ...
+	//  - implement
+	p = p->son;
+	while (p) {
+		processStatement(p);
+		p = p->brother;
+	}
 
 
 	// 5. check if return type and return value
@@ -293,7 +335,7 @@ void processFunction(Node *ptr) {
 	reset();
 }
 
-void processStatement(Node *ptr) {
+void processStatement(Node* ptr) {
 	Node *p;
 
 	if (ptr == NULL) return;		// null statement
@@ -404,31 +446,35 @@ void processOperator(Node *ptr) {
 	switch (ptr->token.number) {
 	case ASSIGN_OP:
 	{
-		Node *lhs = ptr->son, *rhs = ptr->son->brother;
+		Node* lhs = ptr->son;
+		Node* rhs = (lhs && lhs->brother) ? lhs->brother : NULL; // rhs가 존재하는지 안전하게 확인
 
-		// generate instructions for left-hane side if INDEX node.
-		if (lhs->noderep == nonterm) {		// index variable
+		// generate instructions for left-hand side if INDEX node
+		if (lhs->noderep == nonterm) { // index variable
 			lvalue = 1;
 			processOperator(lhs);
 			lvalue = 0;
 		}
 
-		// generate instructions for right-hane side
+		// generate instructions for right-hane side 
 		if (rhs->noderep == nonterm) processOperator(rhs);
-			else rv_emit(rhs);
+		else rv_emit(rhs);
 
 		// generate a store instruction
-		if (lhs->noderep == terminal) {		// simple variable
+		if (lhs->noderep == terminal) { // simple variable
 			stIndex = lookup(lhs->token.value.id);
 			if (stIndex == -1) {
 				printf("undefined variable : %s\n", lhs->token.value.id);
 				return;
 			}
 			emit2(str, symbolTable[stIndex].base, symbolTable[stIndex].offset);
-		} else								// array variable
+		}
+		else { // array variable
 			emit0(sti);
+		}
 		break;
 	}
+
 	case ADD_ASSIGN: case SUB_ASSIGN: case MUL_ASSIGN: case DIV_ASSIGN:
 	case MOD_ASSIGN:
 	{
@@ -651,8 +697,9 @@ int checkPredefined(Node *ptr) {
 	}
 	if (!strcmp(functionName, "write")) {	// write procedure
 		emit0(ldp);
-		if (ptr->brother->noderep == nonterm) processOperator(ptr->brother);
-			else rv_emit(ptr->brother);
+//		if (ptr->brother->noderep == nonterm) processOperator(ptr->brother);
+//			else rv_emit(ptr->brother);
+		rv_emit(ptr->brother->son);
 		emitJump(call, "write");
 		return 1;
 	}

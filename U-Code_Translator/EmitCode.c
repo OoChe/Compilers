@@ -2,16 +2,7 @@
  *         Code emitting functions                      *
  *                                       2003. 3. 18.   *
  ********************************************************/
-#include "../nodeType.h"
-#define numberOfOpcodes 40           // 35 + 4 + 1
-
-typedef enum {
-     notop, neg,   incop, decop, dup,  swp, add,  sub,   mult, divop,
-	 modop, andop, orop,  gt,    lt,   ge,  le,   eq,    ne,
-	 lod,   ldc,   lda,   ldi,   ldp,  str, sti,  ujp,   tjp,  fjp,
-	 call,  ret,   retv,  chkh,  chkl, nop, proc, endop, bgn,  sym,
-	 none
-} opcode;
+#include "../emit.h"
 
 char *mnemonic[numberOfOpcodes] = {
      "notop", "neg",  "inc", "dec",  "dup", "swp",  "add", "sub",
@@ -32,16 +23,14 @@ void emit1(opcode op, int num){
 }
 
 void emit2(opcode op, int base, int offset){
-  // ...
-  // ... need to implemented !!
-  // ...
-
+  // implemented !!
+	fprintf(ucodeFile, "           ");
+	fprintf(ucodeFile, "%-10s %5d %5d\n", mnemonic[op], base, offset);
 }
 void emit3(opcode op, int p1, int p2, int p3){
-  // ...
-  // ... need to implemented !!
-  // ...
-
+	// implemented !!
+	fprintf(ucodeFile, "           ");
+	fprintf(ucodeFile, "%-10s %5d %5d %5d\n", mnemonic[op], p1, p2, p3);
 }
 
 void emitLabel(char *label){
@@ -56,10 +45,9 @@ void emitLabel(char *label){
 }
 
 void emitJump(opcode op, char *label){
-  // ...
-  // ... need to implemented !!
-  // ...
-
+	// implemented !!
+	fprintf(ucodeFile, "           ");
+	fprintf(ucodeFile, "%-10s %s\n", mnemonic[op], label);
 }
 
 void emitSym(int base, int offset, int size){

@@ -292,7 +292,7 @@ int main(int argc, char* argv[]) {		// 명령줄 인자 추가
 	root = parser();
 
 	astFile = fopen("./result.txt", "w");
-	printTree(root,2);		// 파서 실행
+	printTree(root,0);		// 파서 실행
 	fclose(sourceFile);
 	fclose(astFile);
 	return 0;
